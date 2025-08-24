@@ -1,4 +1,4 @@
-import 'package:store_app/http_api.dart';
+import 'package:simple_store_app/http_api.dart';
 
 class GetProductService {
   final url = "/products";
