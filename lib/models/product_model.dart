@@ -14,9 +14,9 @@ class ProductModel {
   factory ProductModel.fromJson(dynamic data) {
     return ProductModel(
       id: data['id'],
-      title: data['title'],
-      price: data['price'],
-      describtion: data['describtion'],
+      title: data['title']!,
+      price: double.tryParse(data['price'].toString()) ?? 0.00,
+      describtion: data['describtion'] ?? '',
       category: data['category'],
       image: data['image'],
     );

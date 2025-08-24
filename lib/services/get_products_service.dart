@@ -10,6 +10,7 @@ class GetProductsService {
       dynamicProducts.forEach((item) {
         products.add(ProductModel.fromJson(item));
       });
+
       return products;
     } catch (e) {
       throw Exception(e.toString());
