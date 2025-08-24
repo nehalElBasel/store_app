@@ -1,7 +1,7 @@
 import 'package:simple_store_app/http_api.dart';
 import 'package:simple_store_app/models/product_model.dart';
 
-class GetProductService {
+class GetProductsService {
   final url = "/products";
   Future<List<ProductModel>> getProducts() async {
     try {
