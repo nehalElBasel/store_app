@@ -41,4 +41,28 @@ class HttpApi {
       );
     }
   }
+
+  Future<Map<String, dynamic>> update({
+    required String url,
+    required ProductModel body,
+    Map<String, String>? headers,
+  }) async {
+    http.Response response = await http.put(
+      Uri.parse("$url/${body.id}"),
+      body: {
+        "title": body.title,
+        "price": body.price.toString(),
+        "description": body.describtion,
+        "image": body.image,
+        "category": body.category,
+      },
+    );
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception(
+        "there is an error with status ${response.statusCode} and body ${response.body}",
+      );
+    }
+  }
 }
