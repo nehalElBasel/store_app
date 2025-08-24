@@ -16,4 +16,19 @@ class HttpApi {
       );
     }
   }
+
+  Future<Map<String, dynamic>> post({
+    required String url,
+    required Map<String, dynamic> body,
+    Map<String, String>? headers,
+  }) async {
+    http.Response response = await http.post(Uri.parse(url));
+    if (response.statusCode == 200) {
+      return jsonDecode(response.body);
+    } else {
+      throw Exception(
+        "there is an error with status ${response.statusCode} and body ${response.body}",
+      );
+    }
+  }
 }
