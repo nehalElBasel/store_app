@@ -1,6 +1,7 @@
 import 'dart:convert';
 
 import 'package:http/http.dart' as http;
+import 'package:simple_store_app/models/product_model.dart';
 
 class HttpApi {
   final String baseUrl = "https://fakestoreapi.com";
@@ -19,10 +20,19 @@ class HttpApi {
 
   Future<Map<String, dynamic>> post({
     required String url,
-    required Map<String, dynamic> body,
+    required ProductModel body,
     Map<String, String>? headers,
   }) async {
-    http.Response response = await http.post(Uri.parse(url));
+    http.Response response = await http.post(
+      Uri.parse(url),
+      body: {
+        "title": body.title,
+        "price": body.price.toString(),
+        "description": body.describtion,
+        "image": body.image,
+        "category": body.category,
+      },
+    );
     if (response.statusCode == 200) {
       return jsonDecode(response.body);
     } else {
