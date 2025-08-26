@@ -6,4 +6,7 @@ class LoadingAddProduct extends AddProductStates {}
 
 class SuccessAddProduct extends AddProductStates {}
 
-class FailureAddProduct extends AddProductStates {}
+class FailureAddProduct extends AddProductStates {
+  FailureAddProduct(this.errorMessage);
+  final String errorMessage;
+}

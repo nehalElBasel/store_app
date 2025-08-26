@@ -2,7 +2,7 @@ import 'package:simple_store_app/http_api.dart';
 import 'package:simple_store_app/models/product_model.dart';
 
 class AddProductService {
-  final url = "/products";
+  final String url = "/products";
   Future<ProductModel> addProduct(ProductModel product) async {
     try {
       ProductModel productt;

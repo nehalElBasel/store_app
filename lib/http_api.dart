@@ -24,17 +24,27 @@ class HttpApi {
     required ProductModel body,
     Map<String, String>? headers,
   }) async {
+    headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': '*/*',
+    };
     http.Response response = await http.post(
-      Uri.parse(url),
+      Uri.parse("$baseUrl$url"),
       body: {
-        "title": body.title,
-        "price": body.price.toString(),
-        "description": body.describtion,
-        "image": body.image,
-        "category": body.category,
+        // "title": body.title,
+        // "price": body.price.toString(),
+        // "description": body.describtion,
+        // "image": body.image,
+        // "category": body.category,
+        "title": "test product2",
+        "price": "13.50",
+        "description": "lorem ipsum set",
+        "image": "https://i.pravatar.cc",
+        "category": "electronic",
       },
+      headers: headers,
     );
-    if (response.statusCode == 200) {
+    if (response.statusCode == 201) {
       return jsonDecode(response.body);
     } else {
       throw Exception(
@@ -49,7 +59,8 @@ class HttpApi {
     Map<String, String>? headers,
   }) async {
     http.Response response = await http.put(
-      Uri.parse("$url/${body.id}"),
+      Uri.parse("$baseUrl$url/${body.id}"),
+
       body: {
         "title": body.title,
         "price": body.price.toString(),

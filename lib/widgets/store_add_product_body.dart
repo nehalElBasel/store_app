@@ -1,4 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:simple_store_app/bloc_observer.dart';
+import 'package:simple_store_app/cubits/add_product_cubit/add_product_cubit.dart';
+import 'package:simple_store_app/models/product_model.dart';
 import 'package:simple_store_app/widgets/custom_text_form_feild.dart';
 import 'package:simple_store_app/widgets/custom_submit_form_btn.dart';
 
@@ -15,11 +19,11 @@ class _StoreAddProductBodyState extends State<StoreAddProductBody> {
       describtionController;
 
   final GlobalKey<FormState> formKey = GlobalKey();
-
   @override
   void initState() {
     // TODO: implement initState
     super.initState();
+    Bloc.observer = OurObserver();
     titleController = TextEditingController();
     describtionController = TextEditingController();
     priceController = TextEditingController();
@@ -35,12 +39,20 @@ class _StoreAddProductBodyState extends State<StoreAddProductBody> {
   }
 
   void _onpressed() {
-    print("pressed");
+    print("on pressd");
     if (formKey.currentState!.validate()) {
-      print("yes");
-      print(titleController.text);
-      print(priceController.text);
-      print(describtionController.text);
+      ProductModel product = ProductModel(
+        id: DateTime.timestamp().microsecond,
+        title: titleController.text,
+        price: double.tryParse(priceController.text) ?? 0,
+        describtion: describtionController.text,
+        category: "category",
+        image: "image",
+      );
+      print("product");
+      print(product);
+      print("beforrrrrrrrrrrrrrrre");
+      BlocProvider.of<AddProductCubit>(context).addProduct(product);
     }
   }
 
