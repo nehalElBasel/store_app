@@ -1,10 +1,17 @@
 import 'package:flutter/material.dart';
 import 'package:simple_store_app/models/product_model.dart';
+import 'package:simple_store_app/views/store_edit_product_view.dart';
 import 'package:simple_store_app/widgets/store_home_card.dart';
 
 class StoreHomeGridView extends StatelessWidget {
   const StoreHomeGridView({super.key, required this.products});
   final List<ProductModel> products;
+
+  void _onCardTab(BuildContext context, ProductModel product) {
+    Navigator.of(
+      context,
+    ).pushNamed(StoreEditProductView.editProductPageRoute, arguments: product);
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +26,13 @@ class StoreHomeGridView extends StatelessWidget {
           mainAxisSpacing: 70,
           crossAxisSpacing: 5,
         ),
-        itemBuilder: (ctx, index) => StoreHomeCard(product: products[index]),
+        itemBuilder:
+            (ctx, index) => StoreHomeCard(
+              product: products[index],
+              onTap: () {
+                _onCardTab(context, products[index]);
+              },
+            ),
       ),
     );
   }

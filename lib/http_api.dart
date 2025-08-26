@@ -31,16 +31,11 @@ class HttpApi {
     http.Response response = await http.post(
       Uri.parse("$baseUrl$url"),
       body: {
-        // "title": body.title,
-        // "price": body.price.toString(),
-        // "description": body.describtion,
-        // "image": body.image,
-        // "category": body.category,
-        "title": "test product2",
-        "price": "13.50",
-        "description": "lorem ipsum set",
-        "image": "https://i.pravatar.cc",
-        "category": "electronic",
+        "title": body.title,
+        "price": body.price.toString(),
+        "description": body.describtion,
+        "image": body.image,
+        "category": body.category,
       },
       headers: headers,
     );

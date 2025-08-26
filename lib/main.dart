@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:simple_store_app/views/store_add_product_view.dart';
+import 'package:simple_store_app/views/store_edit_product_view.dart';
 import 'package:simple_store_app/views/store_home_view.dart';
 
 void main() {
@@ -18,7 +19,10 @@ class StoreApp extends StatelessWidget {
         StoreHomeView.storeVieID: (context) => StoreHomeView(),
         StoreAddProductView.addProductPageRoute:
             (context) => StoreAddProductView(),
+        StoreEditProductView.editProductPageRoute:
+            (context) => StoreEditProductView(),
       },
+
       initialRoute: StoreHomeView.storeVieID,
     );
   }

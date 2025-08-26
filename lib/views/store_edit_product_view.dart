@@ -3,19 +3,19 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:simple_store_app/cubits/add_product_cubit/add_product_cubit.dart';
 import 'package:simple_store_app/cubits/add_product_cubit/add_product_cubit_status.dart';
+import 'package:simple_store_app/models/product_model.dart';
 import 'package:simple_store_app/text_constants.dart';
-import 'package:simple_store_app/widgets/store_add_product_body.dart';
+import 'package:simple_store_app/widgets/store_edit_product_body.dart';
 
-class StoreAddProductView extends StatelessWidget {
-  const StoreAddProductView({super.key});
+class StoreEditProductView extends StatelessWidget {
+  const StoreEditProductView({super.key});
 
-  static final addProductPageRoute = kAddProductRouteID;
+  static final editProductPageRoute = kEditProductRouteID;
   @override
   Widget build(BuildContext context) {
-    print("build");
     // final bool _isLoading = BlocProvider.of<AddProductCubit>(context).isLoading;
     return Scaffold(
-      appBar: AppBar(title: Text("Add new product"), centerTitle: true),
+      appBar: AppBar(title: Text("edit new product"), centerTitle: true),
       body: BlocProvider(
         create: (context) => AddProductCubit(),
         child: BlocConsumer<AddProductCubit, AddProductStates>(
@@ -24,7 +24,10 @@ class StoreAddProductView extends StatelessWidget {
 
             return ModalProgressHUD(
               inAsyncCall: state is LoadingAddProduct,
-              child: StoreAddProductBody(),
+              child: StoreEditProductBody(
+                product:
+                    ModalRoute.settingsOf(context)!.arguments as ProductModel,
+              ),
             );
           },
           listener: (context, state) {

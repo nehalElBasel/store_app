@@ -6,14 +6,15 @@ import 'package:simple_store_app/models/product_model.dart';
 import 'package:simple_store_app/widgets/custom_text_form_feild.dart';
 import 'package:simple_store_app/widgets/custom_submit_form_btn.dart';
 
-class StoreAddProductBody extends StatefulWidget {
-  const StoreAddProductBody({super.key});
+class StoreEditProductBody extends StatefulWidget {
+  const StoreEditProductBody({super.key, required this.product});
+  final ProductModel product;
 
   @override
-  State<StoreAddProductBody> createState() => _StoreAddProductBodyState();
+  State<StoreEditProductBody> createState() => _StoreAddProductBodyState();
 }
 
-class _StoreAddProductBodyState extends State<StoreAddProductBody> {
+class _StoreAddProductBodyState extends State<StoreEditProductBody> {
   late TextEditingController titleController,
       priceController,
       describtionController;
@@ -24,9 +25,11 @@ class _StoreAddProductBodyState extends State<StoreAddProductBody> {
     // TODO: implement initState
     super.initState();
     Bloc.observer = OurObserver();
-    titleController = TextEditingController();
-    describtionController = TextEditingController();
-    priceController = TextEditingController();
+    titleController = TextEditingController(text: widget.product.title);
+    describtionController = TextEditingController(
+      text: widget.product.price.toString(),
+    );
+    priceController = TextEditingController(text: widget.product.describtion);
   }
 
   @override
