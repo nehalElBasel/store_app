@@ -17,8 +17,8 @@ class StoreEditProductView extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(title: Text("edit new product"), centerTitle: true),
       body: BlocProvider(
-        create: (context) => AddProductCubit(),
-        child: BlocConsumer<AddProductCubit, AddProductStates>(
+        create: (context) => ProductCubit(),
+        child: BlocConsumer<ProductCubit, AddProductStates>(
           builder: (context, state) {
             print("build again ${state}");
 
@@ -42,7 +42,7 @@ class StoreEditProductView extends StatelessWidget {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   duration: Duration(minutes: 1),
-                  content: Text(kAddProductSuccessMessage),
+                  content: Text(kEditProductSuccessMessage),
                 ),
               );
               Navigator.pop(context);

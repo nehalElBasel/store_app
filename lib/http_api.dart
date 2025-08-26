@@ -53,6 +53,12 @@ class HttpApi {
     required ProductModel body,
     Map<String, String>? headers,
   }) async {
+    print("update in http api");
+
+    headers = {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      'Accept': '*/*',
+    };
     http.Response response = await http.put(
       Uri.parse("$baseUrl$url/${body.id}"),
 
@@ -63,8 +69,12 @@ class HttpApi {
         "image": body.image,
         "category": body.category,
       },
+      headers: headers,
     );
+
     if (response.statusCode == 200) {
+      print("productttttttttttt");
+      print(response.body);
       return jsonDecode(response.body);
     } else {
       throw Exception(

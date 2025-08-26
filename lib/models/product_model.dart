@@ -16,7 +16,7 @@ class ProductModel {
       id: data['id'],
       title: data['title']!,
       price: double.tryParse(data['price'].toString()) ?? 0.00,
-      describtion: data['describtion'] ?? '',
+      describtion: data['description'] ?? '',
       category: data['category'],
       image: data['image'],
     );

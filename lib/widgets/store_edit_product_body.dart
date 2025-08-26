@@ -24,12 +24,16 @@ class _StoreAddProductBodyState extends State<StoreEditProductBody> {
   void initState() {
     // TODO: implement initState
     super.initState();
+    print("loaded product");
+    print(widget.product.id);
     Bloc.observer = OurObserver();
     titleController = TextEditingController(text: widget.product.title);
-    describtionController = TextEditingController(
+    priceController = TextEditingController(
       text: widget.product.price.toString(),
     );
-    priceController = TextEditingController(text: widget.product.describtion);
+    describtionController = TextEditingController(
+      text: widget.product.describtion,
+    );
   }
 
   @override
@@ -44,7 +48,7 @@ class _StoreAddProductBodyState extends State<StoreEditProductBody> {
   void _onpressed() {
     if (formKey.currentState!.validate()) {
       ProductModel product = ProductModel(
-        id: DateTime.timestamp().microsecond,
+        id: widget.product.id,
         title: titleController.text,
         price: double.tryParse(priceController.text) ?? 0,
         describtion: describtionController.text,
@@ -52,7 +56,7 @@ class _StoreAddProductBodyState extends State<StoreEditProductBody> {
         image: "https://i.pravatar.cc",
       );
 
-      BlocProvider.of<ProductCubit>(context).addProduct(product);
+      BlocProvider.of<ProductCubit>(context).editProduct(product);
     }
   }
 
