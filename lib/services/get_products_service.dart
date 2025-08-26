@@ -7,9 +7,9 @@ class GetProductsService {
     try {
       List<ProductModel> products = [];
       List<dynamic> dynamicProducts = await HttpApi().get(url);
-      dynamicProducts.forEach((item) {
+      for (var item in dynamicProducts) {
         products.add(ProductModel.fromJson(item));
-      });
+      }
 
       return products;
     } catch (e) {

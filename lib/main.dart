@@ -12,7 +12,7 @@ class StoreApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
+      title: 'Simple Store App',
       routes: {StoreHomeView.storeVieID: (context) => StoreHomeView()},
       initialRoute: StoreHomeView.storeVieID,
     );

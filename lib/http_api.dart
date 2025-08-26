@@ -7,7 +7,6 @@ class HttpApi {
   final String baseUrl = "https://fakestoreapi.com";
 
   Future<dynamic> get(String url) async {
-    // print("url is $url");
     http.Response response = await http.get(Uri.parse("$baseUrl$url"));
     if (response.statusCode == 200) {
       // print(jsonDecode(response.body));
