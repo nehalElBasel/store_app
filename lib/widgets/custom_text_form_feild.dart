@@ -18,27 +18,29 @@ class CustomTextFormFeild extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(bottom: 20),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(hint, style: textFormHintStyle()),
-          SizedBox(height: 10),
-          TextFormField(
-            keyboardType: keyboardType,
-            maxLines: maxLines,
-            decoration: InputDecoration(
-              // hintText: hint,
-              border: textFormBorderDecoration(),
-              enabledBorder: textFormBorderDecoration(),
+      child: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            Text(hint, style: textFormHintStyle()),
+            SizedBox(height: 10),
+            TextFormField(
+              keyboardType: keyboardType,
+              maxLines: maxLines,
+              textAlignVertical: TextAlignVertical.center,
+              decoration: InputDecoration(
+                border: textFormBorderDecoration(),
+                enabledBorder: textFormBorderDecoration(),
+              ),
+              controller: controller,
+              validator: (value) {
+                if (value?.isEmpty ?? true) {
+                  return "Please enter Valid Data";
+                }
+              },
             ),
-            controller: controller,
-            validator: (value) {
-              if (value?.isEmpty ?? true) {
-                return "Please enter Valid Data";
-              }
-            },
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }
