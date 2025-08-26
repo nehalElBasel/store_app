@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:simple_store_app/bloc_observer.dart';
-import 'package:simple_store_app/cubits/add_product_cubit/add_product_cubit.dart';
+import 'package:simple_store_app/cubits/product_cubit/product_cubit.dart';
 import 'package:simple_store_app/models/product_model.dart';
 import 'package:simple_store_app/widgets/custom_text_form_feild.dart';
 import 'package:simple_store_app/widgets/custom_submit_form_btn.dart';
@@ -49,7 +49,7 @@ class _StoreAddProductBodyState extends State<StoreAddProductBody> {
         image: "https://i.pravatar.cc",
       );
 
-      BlocProvider.of<AddProductCubit>(context).addProduct(product);
+      BlocProvider.of<ProductCubit>(context).addProduct(product);
     }
   }
 

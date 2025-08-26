@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
-import 'package:simple_store_app/cubits/add_product_cubit/add_product_cubit.dart';
-import 'package:simple_store_app/cubits/add_product_cubit/add_product_cubit_status.dart';
+import 'package:simple_store_app/cubits/product_cubit/product_cubit.dart';
+import 'package:simple_store_app/cubits/product_cubit/product_cubit_status.dart';
 import 'package:simple_store_app/models/product_model.dart';
 import 'package:simple_store_app/text_constants.dart';
 import 'package:simple_store_app/widgets/store_edit_product_body.dart';
@@ -23,7 +23,7 @@ class StoreEditProductView extends StatelessWidget {
             print("build again ${state}");
 
             return ModalProgressHUD(
-              inAsyncCall: state is LoadingAddProduct,
+              inAsyncCall: state is LoadingProduct,
               child: StoreEditProductBody(
                 product:
                     ModalRoute.settingsOf(context)!.arguments as ProductModel,
@@ -31,14 +31,14 @@ class StoreEditProductView extends StatelessWidget {
             );
           },
           listener: (context, state) {
-            if (state is FailureAddProduct) {
+            if (state is FailureProduct) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   duration: Duration(minutes: 1),
                   content: Text(state.errorMessage),
                 ),
               );
-            } else if (state is SuccessAddProduct) {
+            } else if (state is SuccessProduct) {
               ScaffoldMessenger.of(context).showSnackBar(
                 SnackBar(
                   duration: Duration(minutes: 1),
