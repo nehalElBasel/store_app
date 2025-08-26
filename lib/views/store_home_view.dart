@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:simple_store_app/models/product_model.dart';
 import 'package:simple_store_app/services/get_products_service.dart';
+import 'package:simple_store_app/text_constants.dart';
+import 'package:simple_store_app/views/store_add_product_view.dart';
 import 'package:simple_store_app/widgets/store_home_gridview.dart';
 
 class StoreHomeView extends StatefulWidget {
   const StoreHomeView({super.key});
 
-  static final storeVieID = "store";
+  static final storeVieID = kStoreViewID;
 
   @override
   State<StoreHomeView> createState() => _StoreHomeViewState();
@@ -30,7 +32,16 @@ class _StoreHomeViewState extends State<StoreHomeView> {
       appBar: AppBar(
         title: Text("New Trend"),
         centerTitle: true,
-        actions: [IconButton(onPressed: () {}, icon: Icon(Icons.shop_2))],
+        actions: [
+          IconButton(
+            onPressed: () {
+              Navigator.of(
+                context,
+              ).pushNamed(StoreAddProductView.addProductPageRoute);
+            },
+            icon: Icon(Icons.add),
+          ),
+        ],
       ),
       body: FutureBuilder<List<ProductModel>>(
         future: _future,

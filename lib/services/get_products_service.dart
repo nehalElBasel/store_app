@@ -10,7 +10,6 @@ class GetProductsService {
       for (var item in dynamicProducts) {
         products.add(ProductModel.fromJson(item));
       }
-
       return products;
     } catch (e) {
       throw Exception(e.toString());
